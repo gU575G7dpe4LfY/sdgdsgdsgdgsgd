@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Présentation Matrix - Innovation technologique et design d'excellence" />
+    <meta name="keywords" content="matrix, technologie, innovation, futuriste, CAC40" />
+    <!-- Optimisations pour l'autoplay avec son -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Optimisations pour l'autoplay vidéo -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- Optimisations supplémentaires pour la compatibilité -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>matrixXX</title>
+    <style>
+      /* Preloader optimisé pour présentation professionnelle */
+      body {
+        background: #000;
+        margin: 0;
+        padding: 0;
+        font-display: swap;
+        /* Optimisations pour l'audio */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      /* Préchargement des polices critiques */
+      @font-face {
+        font-family: 'Orbitron';
+        font-display: swap;
+      }
+      /* Optimisations pour l'autoplay vidéo */
+      video {
+        -webkit-playsinline: 1;
+        -moz-playsinline: 1;
+        -ms-playsinline: 1;
+        -o-playsinline: 1;
+        playsinline: 1;
+        /* Optimisations supplémentaires */
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        transform: translateZ(0);
+        object-fit: cover;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      
+      /* Optimisations pour les performances */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        box-sizing: border-box;
+      }
+      
+      /* Accélération GPU pour les animations */
+      .gpu-accelerated {
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        will-change: transform;
+      }
+      
+      /* Optimisations pour les anciens navigateurs */
+      @supports not (backdrop-filter: blur(10px)) {
+        .backdrop-blur-sm {
+          background-color: rgba(0, 0, 0, 0.8) !important;
+        }
+      }
+    </style>
+  </head>
+  <body onclick="void(0)" ontouchstart="void(0)">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Script d'activation audio immédiat
+      (function() {
+        // Activation immédiate du contexte audio
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          // Support pour les anciens navigateurs
+          if (!AudioContext && window.mozAudioContext) {
+            AudioContext = window.mozAudioContext;
+          }
+          if (AudioContext) {
+            const audioContext = new AudioContext();
+            if (audioContext.state === 'suspended') {
+              audioContext.resume();
+            }
+          }
+        } catch (e) {
+          console.log('Audio context setup:', e);
+        }
+        
+        // Force l'activation sur toute interaction
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.click();
+          // Activation supplémentaire pour iOS
+          if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            setTimeout(() => {
+              document.body.click();
+            }, 100);
+          }
+        });
+      })();
+      
+      // Préchargement des ressources critiques
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // Enregistrement du service worker pour le cache (optionnel)
+          // Détection des capacités du navigateur
+          const hasWebGL = !!window.WebGLRenderingContext;
+          const hasWebGL2 = !!window.WebGL2RenderingContext;
+          
+          if (!hasWebGL) {
+            console.log('WebGL non supporté, utilisation du fallback CSS');
+            document.body.classList.add('no-webgl');
+          }
+        });
+      }
+      
+      // Polyfill pour requestAnimationFrame
+      (function() {
+        var lastTime = 0;
+        var vendors = ['webkit', 'moz'];
+        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+          window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+          window.cancelAnimationFrame = 
+            window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+        }
+        
+        if (!window.requestAnimationFrame)
+          window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+          };
+        
+        if (!window.cancelAnimationFrame)
+          window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+          };
+      })();
+    </script>
+  </body>
+</html>
